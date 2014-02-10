@@ -1,0 +1,4 @@
+cron:
+- description: sitebro
+  url: /sitebro
+  schedule: "every day 09:00"

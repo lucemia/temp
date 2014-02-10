@@ -1,0 +1,41 @@
+application: tagtoo-keywords
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+builtins:
+- remote_api: on
+- deferred: on
+- appstats: on
+
+inbound_services:
+- warmup
+
+libraries:
+- name: jinja2
+  version: latest
+- name: lxml
+  version: latest
+- name: django
+  version: latest
+- name: webapp2
+  version: latest
+
+
+handlers:
+
+- url: /static
+  static_dir: static
+  http_headers:
+      Vary: Accept-Encoding
+
+
+- url: /.*
+  script: main.app
+
+pagespeed:
+  enabled_rewriters:
+  - MinifyCss
+  - CombineJs
+  - CombineCss
